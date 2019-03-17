@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 17, 2019 at 06:50 AM
+-- Generation Time: Mar 17, 2019 at 08:22 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -13,6 +13,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `medical`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_docter`
+--
+
+CREATE TABLE `t_docter` (
+  `id_docter` int(11) NOT NULL,
+  `docter_name` varchar(30) NOT NULL,
+  `id_poliklinik` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `t_docter`
+--
+
+INSERT INTO `t_docter` (`id_docter`, `docter_name`, `id_poliklinik`) VALUES
+(1, 'Toto Rubianto', 2),
+(2, 'Kharis Azhar', 1),
+(7, 'Nurkhasanah', 1);
 
 -- --------------------------------------------------------
 
@@ -45,7 +66,6 @@ INSERT INTO `t_hospital` (`id_hospital`, `hospital_name`, `day_open`, `Rating`, 
 CREATE TABLE `t_poliklinik` (
   `id_poliklinik` int(11) NOT NULL,
   `poliklinik_name` varchar(30) NOT NULL,
-  `id_doctor` int(11) NOT NULL,
   `id_hospital` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -53,13 +73,20 @@ CREATE TABLE `t_poliklinik` (
 -- Dumping data for table `t_poliklinik`
 --
 
-INSERT INTO `t_poliklinik` (`id_poliklinik`, `poliklinik_name`, `id_doctor`, `id_hospital`) VALUES
-(1, 'mata', 1, 2),
-(2, 'gigi', 1, 2);
+INSERT INTO `t_poliklinik` (`id_poliklinik`, `poliklinik_name`, `id_hospital`) VALUES
+(1, 'mata', 2),
+(2, 'gigi', 2);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `t_docter`
+--
+ALTER TABLE `t_docter`
+  ADD PRIMARY KEY (`id_docter`),
+  ADD KEY `id_poliklinik` (`id_poliklinik`);
 
 --
 -- Indexes for table `t_hospital`
@@ -79,6 +106,12 @@ ALTER TABLE `t_poliklinik`
 --
 
 --
+-- AUTO_INCREMENT for table `t_docter`
+--
+ALTER TABLE `t_docter`
+  MODIFY `id_docter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `t_hospital`
 --
 ALTER TABLE `t_hospital`
@@ -93,6 +126,12 @@ ALTER TABLE `t_poliklinik`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `t_docter`
+--
+ALTER TABLE `t_docter`
+  ADD CONSTRAINT `t_docter_ibfk_1` FOREIGN KEY (`id_poliklinik`) REFERENCES `t_poliklinik` (`id_poliklinik`);
 
 --
 -- Constraints for table `t_poliklinik`
