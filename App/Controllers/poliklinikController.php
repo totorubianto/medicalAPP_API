@@ -17,6 +17,18 @@ class poliklinikController extends Controller {
         $data=array('poliklinik' => $fetch);
         echo json_encode($data);
     }
-  
+    public function byhospital($id){
+        $result=$this->Hospital->byidhospital($id);
+        $fetch=mysqli_fetch_all($result,MYSQLI_ASSOC);
+        $data=array('poliklinik' => $fetch);
+        echo json_encode($data);
+    }
+    public function byid($id){
+        $result=$this->Hospital->byidpoliklinik($id);
+        $fetch=mysqli_fetch_all($result,MYSQLI_ASSOC);
+        $data=array('poliklinik' => $fetch);
+        echo json_encode($data);
+    }
+   
 
 }

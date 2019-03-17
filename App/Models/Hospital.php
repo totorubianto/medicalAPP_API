@@ -19,9 +19,29 @@ class Hospital extends Model {
         $result = $this->db->query($sql);
         return $result;
     }
+    public function byidpoliklinik($id) {
+        $sql = "SELECT * FROM t_poliklinik where id_poliklinik='$id'";
+        $result = $this->db->query($sql);
+        return $result;
+    }
+    public function byidhospital($id) {
+        $sql = "SELECT * FROM t_poliklinik where id_hospital='$id'";
+        $result = $this->db->query($sql);
+        return $result;
+    }
     //Docter ====================================
-    public function docter() {
+    public function doctor() {
         $sql = "SELECT * FROM t_docter";
+        $result = $this->db->query($sql);
+        return $result;
+    }
+    public function byiddoctor($id) {
+        $sql = "SELECT * FROM t_docter where id_docter='$id'";
+        $result = $this->db->query($sql);
+        return $result;
+    }
+    public function bypoliklinik($id) {
+        $sql = "SELECT * FROM t_docter where id_poliklinik='$id'";
         $result = $this->db->query($sql);
         return $result;
     }
